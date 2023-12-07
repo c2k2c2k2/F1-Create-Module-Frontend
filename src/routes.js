@@ -17,6 +17,7 @@
 
 */
 import Dashboard from "views/Dashboard.js";
+import React from "react";
 // import Notifications from "views/Notifications.js";
 // import Icons from "views/Icons.js";
 // import Typography from "views/Typography.js";
@@ -97,7 +98,7 @@ var routes = [
     path: "/module",
     name: "Module",
     // icon: "nc-icon nc-pin-3",
-    component: < Module/>,
+    component: <Module />,
     layout: "/admin",
   },
   // {
