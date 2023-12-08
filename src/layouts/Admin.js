@@ -27,6 +27,7 @@ import Sidebar from "components/Sidebar/Sidebar.js";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
 
 import routes from "routes.js";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 var ps;
 
@@ -47,6 +48,7 @@ function Dashboard(props) {
       }
     };
   });
+  const queryClient = new QueryClient();
   React.useEffect(() => {
     mainPanel.current.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
@@ -58,36 +60,38 @@ function Dashboard(props) {
     setBackgroundColor(color);
   };
   return (
-    <div className="wrapper">
-      <Sidebar
-        {...props}
-        routes={routes}
-        bgColor={backgroundColor}
-        activeColor={activeColor}
-      />
-      <div className="main-panel" ref={mainPanel}>
-        <DemoNavbar {...props} />
-        <Routes>
-          {routes.map((prop, key) => {
-            return (
-              <Route
-                path={prop.path}
-                element={prop.component}
-                key={key}
-                exact
-              />
-            );
-          })}
-        </Routes>
-        {/* <Footer style={{postion: "bottom"}}/> */}
-      </div>
-      {/* <FixedPlugin
+    <QueryClientProvider client={queryClient}>
+      <div className="wrapper">
+        <Sidebar
+          {...props}
+          routes={routes}
+          bgColor={backgroundColor}
+          activeColor={activeColor}
+        />
+        <div className="main-panel" ref={mainPanel}>
+          <DemoNavbar {...props} />
+          <Routes>
+            {routes.map((prop, key) => {
+              return (
+                <Route
+                  path={prop.path}
+                  element={prop.component}
+                  key={key}
+                  exact
+                />
+              );
+            })}
+          </Routes>
+          {/* <Footer style={{postion: "bottom"}}/> */}
+        </div>
+        {/* <FixedPlugin
         bgColor={backgroundColor}
         activeColor={activeColor}
         handleActiveClick={handleActiveClick}
         handleBgClick={handleBgClick}
       /> */}
-    </div>
+      </div>
+    </QueryClientProvider>
   );
 }
 

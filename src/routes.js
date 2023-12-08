@@ -29,6 +29,7 @@ import React from "react";
 import Invoice from "views/invoice";
 import Product from "views/product";
 import Module from "views/Module";
+import Address from "views/Address";
 var routes = [
   {
     path: "/dashboard",
@@ -99,6 +100,13 @@ var routes = [
     name: "Module",
     // icon: "nc-icon nc-pin-3",
     component: <Module />,
+    layout: "/admin",
+  },
+  {
+    path: "/Address",
+    name: "Adress",
+    // icon: "nc-icon nc-pin-3",
+    component: <Address />,
     layout: "/admin",
   },
   // {
